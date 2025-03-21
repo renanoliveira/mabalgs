@@ -1,7 +1,11 @@
+"""
+This module implements various algorithms for solving Multi-Armed Bandit problems,
+including UCB1, UCB-Tuned, and Thompson Sampling.
+"""
 import numpy as np
 
 
-class UCB1(object):
+class UCB1:
     """Upper Confidence Bound (UCB1) algorithm for Multi-Armed Bandit problems.
     
     This implementation uses the standard UCB1 formula to balance exploration and exploitation.
@@ -85,7 +89,7 @@ class UCBTuned(UCB1):
             np.array: UCB-Tuned values for each arm
         """
         reward_variance = (np.sum(np.square(self.rewards - avg_reward)))
-        empirical_variance = (1/arm_selections) * reward_variance
+        empirical_variance = (1 / arm_selections) * reward_variance
 
         base_exploration = np.sqrt(2 * np.log(total_selections) / arm_selections)
         variance_term = empirical_variance + base_exploration
@@ -96,7 +100,7 @@ class UCBTuned(UCB1):
         return avg_reward + exploration_factor
 
 
-class ThompsomSampling:
+class ThompsonSampling:
     """Thompson Sampling algorithm for Multi-Armed Bandit problems.
     
     This implementation uses Bayesian inference to balance exploration and exploitation.
